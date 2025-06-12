@@ -25,10 +25,10 @@ class StoreOrderRequest extends FormRequest
     {
         return [
             'customer_name' => 'required|string|max:255',
-            'status' => 'in:новый,выполнен',
-            'comment' => 'nullable|string',
+            'status' => 'required|in:новый,выполнен',
             'product_id' => 'required|exists:products,id',
             'quantity' => 'required|integer|min:1',
+            'comment' => 'nullable|string',
         ];
     }
 }

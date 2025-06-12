@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\Product;
 use App\Http\Requests\StoreOrderRequest;
+use App\Http\Requests\UpdateOrderRequest;
 
 class OrderController extends Controller
 {
@@ -50,9 +51,9 @@ class OrderController extends Controller
         return view('orders.edit', compact('order'));
     }
 
-    public function update(StoreOrderRequest $request, Order $order)
+    public function update(UpdateOrderRequest $request, Order $order)
     {
-        $order->status = $request->validated()['status'] ?? 'новый';
+        $order->status = $request->validated()['status'];
         $order->save();
 
         return redirect()->route('orders.index')->with('success', 'Статус заказа обновлён.');
